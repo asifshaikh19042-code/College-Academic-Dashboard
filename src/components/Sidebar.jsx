@@ -1,0 +1,7 @@
+import { NavLink } from 'react-router-dom'
+import { LayoutDashboard,UserRound,BookOpenCheck,CalendarCheck,GraduationCap,ClipboardList,CalendarDays,Megaphone,Wallet,Library,Settings,ChevronLeft,ChevronRight,X } from 'lucide-react'
+const items=[['/','Dashboard',LayoutDashboard],['/profile','My Profile',UserRound],['/academic','Academic Records',BookOpenCheck],['/attendance','Attendance',CalendarCheck],['/exams','Exams & Results',GraduationCap],['/assignments','Assignments',ClipboardList],['/timetable','Time Table',CalendarDays],['/notices','Notices',Megaphone],['/fees','Fees & Payments',Wallet],['/library','Library',Library],['/settings','Settings',Settings]]
+export default function Sidebar({collapsed,setCollapsed,mobileOpen,setMobileOpen}){
+ return <><div className={`sidebar-backdrop ${mobileOpen?'show':''}`} onClick={()=>setMobileOpen(false)} /><aside className={`sidebar ${collapsed?'collapsed':''} ${mobileOpen?'open':''}`}><div className="side-brand"><div className="brand-mark">DS</div>{!collapsed&&<div><strong>Dayanand</strong><span>Science College</span></div>}<button className="side-close" onClick={()=>setMobileOpen(false)}><X/></button></div><nav>{items.map(([to,label,Icon])=><NavLink key={to} to={to} end={to==='/'} className={({isActive})=>`nav-item ${isActive?'active':''}`} onClick={()=>setMobileOpen(false)}><Icon size={19}/><span>{label}</span></NavLink>)}</nav><button className="collapse-btn" onClick={()=>setCollapsed(!collapsed)}>{collapsed?<ChevronRight/>:<ChevronLeft/>}</button></aside></>
+}
+

@@ -1,0 +1,20 @@
+import { useState } from 'react'
+import { BrowserRouter,Routes,Route,Navigate } from 'react-router-dom'
+import { AppProvider } from './context/AppContext'
+import Sidebar from './components/Sidebar'
+import Header from './components/Header'
+import Dashboard from './pages/Dashboard'
+import Profile from './pages/Profile'
+import AcademicRecords from './pages/AcademicRecords'
+import Attendance from './pages/Attendance'
+import ExamsResults from './pages/ExamsResults'
+import Assignments from './pages/Assignments'
+import Timetable from './pages/Timetable'
+import Notices from './pages/Notices'
+import FeesPayments from './pages/FeesPayments'
+import Library from './pages/Library'
+import Settings from './pages/Settings'
+import './App.css'
+function Shell(){const [collapsed,setCollapsed]=useState(false),[mobileOpen,setMobileOpen]=useState(false);return <div className={`app-shell ${collapsed?'sidebar-collapsed':''}`}><Sidebar collapsed={collapsed} setCollapsed={setCollapsed} mobileOpen={mobileOpen} setMobileOpen={setMobileOpen}/><div className="app-main"><Header setMobileOpen={setMobileOpen}/><main className="content"><Routes><Route path="/" element={<Dashboard/>}/><Route path="/profile" element={<Profile/>}/><Route path="/academic" element={<AcademicRecords/>}/><Route path="/attendance" element={<Attendance/>}/><Route path="/exams" element={<ExamsResults/>}/><Route path="/assignments" element={<Assignments/>}/><Route path="/timetable" element={<Timetable/>}/><Route path="/notices" element={<Notices/>}/><Route path="/fees" element={<FeesPayments/>}/><Route path="/library" element={<Library/>}/><Route path="/settings" element={<Settings/>}/><Route path="*" element={<Navigate to="/" replace/>}/></Routes></main></div></div>}
+export default function App(){return <BrowserRouter><AppProvider><Shell/></AppProvider></BrowserRouter>}
+
